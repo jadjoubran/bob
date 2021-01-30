@@ -13,7 +13,11 @@ module.exports = {
         var output = '';
         for (var i = 0, l = input.length; i < l; i++) {
             if (typeof input[i] === 'string') {
-                output += '"' + input[i] + '"';
+                if (output[i].includes('"')) {
+                    output += "'" + input[i] + "'";
+                } else {
+                    output += '"' + input[i] + '"';
+                }
             } else if (Array.isArray(input[i])) {
                 output += 'Array [';
                 output += this.formatArray(input[i]);
